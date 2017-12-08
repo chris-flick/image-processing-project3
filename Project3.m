@@ -108,3 +108,22 @@ open morphoPrun.m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Problem 3.4
+
+open edgeMag.m
+open edgeAngle.m
+
+building = imread('building.tif');
+edge = edgeMag(building, 'sobel', 1);
+imshow(uint8(edge));
+title('edge detection with sobel')
+pause
+
+angle = edgeAngle(building, 'sobel', 0);
+imshow(uint8(angle));
+title('edge angle')
+pause
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Problem 3.5
+
+
