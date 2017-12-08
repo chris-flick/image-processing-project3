@@ -1,4 +1,5 @@
 function g = edgeMag(f, type, T)
+[M N] = size(f);
 
 switch type
     case 'prewitt'
@@ -7,8 +8,17 @@ switch type
         
         GX = imfilter(f, gx, 'replicate');
         GY = imfilter(f, gy, 'replicate');
-        
+       
         g = abs(GX) + abs(GY);
+        
+        threshold = T * 255;
+        for i = 1:M
+            for j = 1:N
+                if g(i,j) <= threshold
+                    g(i,j) = 0;
+                end
+            end
+        end
         
     case 'sobel'
         gx = [-1, -2, -1; 0, 0, 0; 1, 2, 1];
@@ -18,6 +28,15 @@ switch type
         GY = imfilter(f, gy, 'replicate');
         
         g = abs(GX) + abs(GY);
+        
+        threshold = T * 255;
+        for i = 1:M
+            for j = 1:N
+                if g(i,j) <= threshold
+                    g(i,j) = 0;
+                end
+            end
+        end
     otherwise
         disp('incorrect type')
         return
